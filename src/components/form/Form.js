@@ -1,4 +1,5 @@
 import { Component } from "react";
+import {Label} from "./form.styled"
 import { nanoid } from 'nanoid';
 
 export class Form extends Component {
@@ -6,6 +7,9 @@ export class Form extends Component {
         name: '',
         number: '',
     };
+
+    nameInputId = nanoid();
+    numberInputId = nanoid();
 
     handleInputChange = e => {
         const { name, value } = e.currentTarget
@@ -30,7 +34,7 @@ export class Form extends Component {
 render() {
     return (
     <form onSubmit={this.handleSubmit}>
-        <label htmlFor={this.nameInputId}>
+        <Label htmlFor={this.nameInputId}>
         Name
             <input
             id = {this.nameInputId}
@@ -42,8 +46,8 @@ render() {
             value={this.state.name}
             onChange={this.handleInputChange}
         />
-        </label>
-        <label htmlFor={this.numberInputId}>
+        </Label>
+        <Label htmlFor={this.numberInputId}>
             Number
             <input
             id={this.numberInputId}
@@ -55,7 +59,7 @@ render() {
             value={this.state.number}
             onChange={this.handleInputChange}
         />
-        </label>
+        </Label>
         <button type="submit">Sign up as</button>
     </form>
     )

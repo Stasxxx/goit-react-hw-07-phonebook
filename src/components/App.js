@@ -1,8 +1,8 @@
 import { Component } from "react";
-import { nanoid } from 'nanoid'
-import { Container } from "./container/Container";
-import { ContactList } from "./contacts/Contacts";
+import { nanoid } from 'nanoid';
+import { ContactForm } from "./contacts/Contacts";
 import { Filter } from "./Filter/filter";
+import { Form } from "./form/Form";
 
 
 export class App extends Component {
@@ -14,94 +14,67 @@ export class App extends Component {
     {id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
-  nameInputId = nanoid();
-  numberInputId = nanoid();
   filterInputId = nanoid();
 
-  handleInputChange = e => {
+  handleFilterChange = e => {
     const {name, value} = e.currentTarget
     this.setState({[name]: value})
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
+  // banExistingContacts = date => {
+  //   const name = this.state.contacts.filter(item => item.name.includes(date.name));
+  //   if (date.name === name[0].name) {
+  //     return alert(`${name[0].name} is already in contacts.`)
+  //   }
+  // }
+
+  handleFormSubmit = date => {
+    const name = this.state.contacts.filter(item => item.name.includes(date.name));
+    if (date.name === name[0].name) {
+      return alert(`${name[0].name} is already in contacts.`)
+    }
     const contact = {
       id: nanoid(),
-      name: this.state.name,
-      number: this.state.number
+      name: date.name,
+      number: date.number
     }
     
     this.setState(prevState => ({
-      contacts: [contact, ...prevState.contacts]
+    contacts: [contact, ...prevState.contacts]
     }))
-
-    this.reset()
+    
   }
 
-  reset = () => {
-    this.setState({
-      name: '',
-      number: '',
-    })
+  getVisibleFilter = () => {
+    const {filter, contacts} = this.state
+    const normalizedFilter = filter.toLowerCase();
+    
+    return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
   }
 
-  
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts.filter(item => item.id !== contactId)],
+    }))
+  }
 
   render() {
 
-    const normalizedFilter = this.state.filter.toLowerCase();
-    const visibleContacts = this.state.contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
+    
+    const visibleContacts = this.getVisibleFilter()
    
     return (
-      <>
-        <Container>
+      <div>
         <h1>Phonebook</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor={this.nameInputId}>
-            Name
-              <input
-              id = {this.nameInputId}
-              type="text"
-              name="name"
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              required
-              value={this.state.name}
-              onChange={this.handleInputChange}
-            />
-          </label>
-            <label htmlFor={this.numberInputId}>
-              Number
-              <input
-              id={this.numberInputId}
-              type="tel"
-              name="number"
-              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              required
-              value={this.state.number}
-              onChange={this.handleInputChange}
-            />
-          </label>
-          <button type="submit">Sign up as</button>
-        </form>
-
-        </Container>
+        <Form onSubmit={ this.handleFormSubmit } />
         
-          <div>
-          <h2>Contacts</h2>
-
-          <Filter value={this.state.filter} id={this.filterInputId} onChange={this.handleInputChange}/>
-         
-            <ContactList contacts={visibleContacts} />
+        <h2>Contacts</h2>
+        <Filter value={this.state.filter} id={this.filterInputId} onChange={this.handleFilterChange}/>
+        <ContactForm contacts={visibleContacts} onDeleteContact={this.deleteContact}/>
           
-          </div>
-        
-      </>
+      </div>
         
     );
   }

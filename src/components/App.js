@@ -31,19 +31,22 @@ export class App extends Component {
   // }
 
   handleFormSubmit = date => {
-    const name = this.state.contacts.filter(item => item.name.includes(date.name));
-    if (date.name === name[0].name) {
-      return alert(`${name[0].name} is already in contacts.`)
-    }
+    
     const contact = {
       id: nanoid(),
       name: date.name,
       number: date.number
     }
     
-    this.setState(prevState => ({
+    const name = this.state.contacts.filter(item => item.name.includes(date.name));
+    
+    if (name.length === 0) {
+      return this.setState(prevState => ({
     contacts: [contact, ...prevState.contacts]
     }))
+    } else if (name[0].name) {
+      return alert(`${name[0].name} is already in contacts.`)
+    }
     
   }
 

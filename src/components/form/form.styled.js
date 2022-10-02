@@ -5,6 +5,6 @@ export const Label = styled.label`
     font-size: 12px;
     line-height: 1.17;
     letter-spacing: 0.01em;
-    color: var(--secondary-color);
+    color: #757575;
     margin-bottom: 4px;
 `

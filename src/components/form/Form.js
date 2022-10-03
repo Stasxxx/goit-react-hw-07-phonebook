@@ -1,8 +1,12 @@
 import { Component } from "react";
-import {Label} from "./form.styled"
+import {Div, Label,Input,Button} from "./form.styled"
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 export class Form extends Component {
+    static propTypes = {
+        onSubmit: PropTypes.func.isRequired,
+    }
     state = {
         name: '',
         number: '',
@@ -33,10 +37,11 @@ export class Form extends Component {
 
 render() {
     return (
+        <Div>
     <form onSubmit={this.handleSubmit}>
         <Label htmlFor={this.nameInputId}>
         Name
-            <input
+            <Input
             id = {this.nameInputId}
             type="text"
             name="name"
@@ -49,7 +54,7 @@ render() {
         </Label>
         <Label htmlFor={this.numberInputId}>
             Number
-            <input
+            <Input
             id={this.numberInputId}
             type="tel"
             name="number"
@@ -60,8 +65,9 @@ render() {
             onChange={this.handleInputChange}
         />
         </Label>
-        <button type="submit">Add contact</button>
-    </form>
+        <Button type="submit">Add contact</Button>
+            </form>
+        </Div>
     )
     }
 }

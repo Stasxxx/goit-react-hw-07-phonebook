@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 export const Div = styled.div`
     width:310px;
-`;
-
+`
 export const Label = styled.label`
     display: block;
     font-size: 20px;
@@ -36,31 +35,3 @@ export const Input = styled.input`
         fill: #2196F3;
     }
 `;
-
-export const Button = styled.button`
-    width: 100px;
-    height: 30px;
-    background: #87CEFA;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-    border-radius: 4px;
-    border: 0;
-    display: block;
-    margin-left: 100px;
-    /* margin-left: auto;
-    margin-right: auto; */
-
-    font-family: inherit;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 1.4px;
-    text-align: center;
-    letter-spacing: 0.06em;
-    color: #FFFFFF;
-    cursor: pointer;
-
-    &:hover,
-    &:focus {
-        background: #188CE8;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-    }
-`

@@ -1,9 +1,12 @@
+import PropTypes from 'prop-types';
+import { Label, Input, Div } from "components/Filter/filter.styled";
 
 export const Filter = ({value, onChange, id}) => {
     return (
-    <label htmlFor={id}>
+        <Div>
+    <Label htmlFor={id}>
             Find contacts by name
-        <input
+        <Input
         id = {id}
         type="text"
         name="filter"
@@ -13,6 +16,13 @@ export const Filter = ({value, onChange, id}) => {
         value={value}
         onChange={onChange}
         />
-    </label>
+            </Label>
+        </Div>
 )
+}
+
+Filter.propTypes = {
+    value: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired
 }

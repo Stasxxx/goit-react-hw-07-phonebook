@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import { ContactForm } from "./contacts/Contacts";
 import { Filter } from "./Filter/filter";
 import { Form } from "./form/Form";
+import { Container } from "./app.styled";
 
 
 export class App extends Component {
@@ -22,13 +23,6 @@ export class App extends Component {
     const {name, value} = e.currentTarget
     this.setState({[name]: value})
   };
-
-  // banExistingContacts = date => {
-  //   const name = this.state.contacts.filter(item => item.name.includes(date.name));
-  //   if (date.name === name[0].name) {
-  //     return alert(`${name[0].name} is already in contacts.`)
-  //   }
-  // }
 
   handleFormSubmit = date => {
     
@@ -69,7 +63,8 @@ export class App extends Component {
     const visibleContacts = this.getVisibleFilter()
    
     return (
-      <div>
+      <Container>
+
         <h1>Phonebook</h1>
         <Form onSubmit={ this.handleFormSubmit } />
         
@@ -77,7 +72,7 @@ export class App extends Component {
         <Filter value={this.state.filter} id={this.filterInputId} onChange={this.handleFilterChange}/>
         <ContactForm contacts={visibleContacts} onDeleteContact={this.deleteContact}/>
           
-      </div>
+      </Container>
         
     );
   }

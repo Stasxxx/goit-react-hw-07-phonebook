@@ -39,16 +39,25 @@ export class App extends Component {
       name: date.name,
       number: date.number
     }
+    const name = this.state.contacts.find(item => item.name === date.name);
+    // const name = this.state.contacts.find(item => item.name.includes(date.name));
     
-    const name = this.state.contacts.filter(item => item.name.includes(date.name));
-    
-    if (name.length === 0) {
+    if (name) {
+      return alert(`${name.name} is already in contacts.`)
+        
+    } else {
       return this.setState(prevState => ({
     contacts: [contact, ...prevState.contacts]
     }))
-    } else if (name[0].name) {
-      return alert(`${name[0].name} is already in contacts.`)
-    }
+  }
+
+    // if (name.length === 0) {
+    //   return this.setState(prevState => ({
+    // contacts: [contact, ...prevState.contacts]
+    // }))
+    // } else if (name[0].name) {
+    //   return alert(`${name[0].name} is already in contacts.`)
+    // }
     
   }
 
@@ -66,8 +75,6 @@ export class App extends Component {
   }
 
   render() {
-
-    
     const visibleContacts = this.getVisibleFilter()
    
     return (

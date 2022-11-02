@@ -15,7 +15,6 @@ export const App = () => {
   useEffect(() => {
     localStorage.setItem(KEY, JSON.stringify(contacts));
   },[contacts]);
-  
 
   const handleFilterChange = e => {
     const { value } = e.currentTarget;
@@ -23,7 +22,6 @@ export const App = () => {
   };
 
   const handleFormSubmit = date => {
-    console.log(date);
     const contact = {
       id: nanoid(),
       name: date.name,
@@ -33,7 +31,6 @@ export const App = () => {
         
     if (name) {
       return alert(`${name.name} is already in contacts.`)
-        
     } else {
       return setContacts(prevState => ([contact, ...prevState]));
     }
@@ -52,14 +49,12 @@ export const App = () => {
    
     return (
       <Container>
-
         <h1>Phonebook</h1>
         <Form onSubmit={handleFormSubmit} />
         
         <h2>Contacts</h2>
         <Filter value={filterInput} id={filterInputId} onChange={handleFilterChange}/>
         <ContactForm contacts={visibleContacts} onDeleteContact={deleteContact}/>
-          
       </Container>
         
     );

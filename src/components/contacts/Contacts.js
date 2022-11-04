@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { Item, Button, List } from "./contacts.styled"
 import { useSelector, useDispatch } from "react-redux";
 import { getContacts } from "redux/selectors";
@@ -10,6 +10,7 @@ export const ContactForm = ({ contacts, onDeleteContact }) => {
     const dispatch = useDispatch();
 
     const delContact = contactId => {
+        
     dispatch(deleteContact(contactId))
   }
     return (
@@ -19,11 +20,11 @@ export const ContactForm = ({ contacts, onDeleteContact }) => {
     )
 }
 
-ContactForm.propTypes = {
-    contacts: PropTypes.arrayOf(PropTypes.exact({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        number: PropTypes.string.isRequired,
-    })),
-    onDeleteContact: PropTypes.func.isRequired,
-}
+// ContactForm.propTypes = {
+//     contacts: PropTypes.arrayOf(PropTypes.exact({
+//         id: PropTypes.string.isRequired,
+//         name: PropTypes.string.isRequired,
+//         number: PropTypes.string.isRequired,
+//     })),
+//     onDeleteContact: PropTypes.func.isRequired,
+// }

@@ -48,7 +48,7 @@ export const App = () => {
       <Container>
         <h1>Phonebook</h1>
         <Form onSubmit={handleFormSubmit} />
-        
+         
         <h2>Contacts</h2>
         <Filter value={filterInput} id={filterInputId} onChange={handleFilterChange}/>
         <ContactForm contacts={visibleContacts} />

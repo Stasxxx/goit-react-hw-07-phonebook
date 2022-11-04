@@ -4,8 +4,6 @@ import { ContactForm } from "./contacts/Contacts";
 import { Filter } from "./Filter/filter";
 import { Form } from "./form/Form";
 import { Container } from "./app.styled";
-import { useDispatch } from "react-redux";
-import { deleteContact } from "redux/contactsSlice";
 
 const KEY = 'list_contacts';
 export const App = () => {
@@ -13,7 +11,7 @@ export const App = () => {
   const [ filterInput, setFilter ] = useState('');
   
   const filterInputId = nanoid();
-  const dispatch = useDispatch()
+
   useEffect(() => {
     localStorage.setItem(KEY, JSON.stringify(contacts));
   },[contacts]);
@@ -43,10 +41,6 @@ export const App = () => {
     return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
   }
 
-  const delContact = contactId => {
-    dispatch(deleteContact(contactId))
-    // setContacts(prevState => ([...prevState.filter(item => item.id !== contactId)]));
-  }
 
   const visibleContacts = getVisibleFilter()
    
@@ -57,7 +51,7 @@ export const App = () => {
         
         <h2>Contacts</h2>
         <Filter value={filterInput} id={filterInputId} onChange={handleFilterChange}/>
-        <ContactForm contacts={visibleContacts} onDeleteContact={delContact}/>
+        <ContactForm contacts={visibleContacts} />
       </Container>
         
     );

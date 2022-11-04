@@ -5,8 +5,9 @@ import { getContacts, getFilter } from "redux/selectors";
 import { deleteContact } from "redux/contactsSlice";
 
 
-export const ContactForm = ({ contacts, onDeleteContact }) => {
+export const ContactForm = () => {
     const selector = useSelector(getContacts);
+    // console.log(selector.list)
     const dispatch = useDispatch();
     const contact = useSelector(getFilter);
 
@@ -27,12 +28,3 @@ export const ContactForm = ({ contacts, onDeleteContact }) => {
         </List>
     )
 }
-
-// ContactForm.propTypes = {
-//     contacts: PropTypes.arrayOf(PropTypes.exact({
-//         id: PropTypes.string.isRequired,
-//         name: PropTypes.string.isRequired,
-//         number: PropTypes.string.isRequired,
-//     })),
-//     onDeleteContact: PropTypes.func.isRequired,
-// }

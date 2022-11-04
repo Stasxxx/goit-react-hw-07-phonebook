@@ -11,7 +11,7 @@ export const Filter = () => {
     
     const dispatch = useDispatch();
     const filter = useSelector(getFilter);
-    const handleFilterChenge = e => {
+    const handleFilterChenge = (e) => {
        
         const { value } = e.target;
         dispatch(filterContact(value))

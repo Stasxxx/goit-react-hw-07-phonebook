@@ -1,8 +1,8 @@
 import { Div, Label, Input, Button } from "./form.styled"
 import { nanoid } from 'nanoid';
-import { useDispatch, } from "react-redux";
+import { useDispatch, useSelector, } from "react-redux";
 import { addContact } from "redux/contactsSlice";
-
+import { getContacts } from "redux/selectors"; 
     
 const nameInputId = nanoid();
 const numberInputId = nanoid();
@@ -11,14 +11,20 @@ const numberInputId = nanoid();
 export const Form = () => {
     
     const dispatch = useDispatch();
-
+    const selector = useSelector(getContacts);
+    
     const handleSubmit = e => {
         e.preventDefault();
         const form = e.target.elements
         const contact = { id: nanoid(), name: form.name.value, number: form.number.value }
-        
-        dispatch(addContact(contact));       
-        e.target.reset()
+        const name = selector.find(item => item.name === contact.name);
+        e.target.reset();
+
+        if (name) {
+            return alert(`${name.name} is already in contacts.`)
+        } else {
+            return dispatch(addContact(contact));
+        }
     };
 
     return (

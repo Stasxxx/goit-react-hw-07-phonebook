@@ -1,5 +1,6 @@
 // import PropTypes from "prop-types";
-import { Item, Button, List } from "./contacts.styled"
+import { Item, List } from "./contacts.styled"
+import { CardContact } from "components/CardContact/CardContact";
 import { useSelector, useDispatch } from "react-redux";
 import { getContacts, getFilter } from "redux/selectors";
 import { deleteContact } from "redux/contactsSlice";
@@ -22,7 +23,8 @@ export const ContactForm = () => {
   }
     return (
         <List>
-            {visibleContacts.map(contact => <Item key={contact.id}>{contact.name}: {contact.number} <Button type="button" onClick={()=> delContact(contact.id)}>Delete</Button></Item>)}
+            {visibleContacts.map(contact => <Item key={contact.id}><CardContact contact={ contact } delContact={delContact} /></Item>)}
         </List>
     )
 }
+

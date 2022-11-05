@@ -18,7 +18,9 @@ const contactsSlice = createSlice({
                 state.list.push(action.payload)
             },
         deleteContact(state, action) {
-            return state.list.filter(contact => contact.id !== action.payload);
+            const index = state.list.findIndex(contact => contact.id === action.payload);
+            state.list.splice(index, 1)
+            // return state.list.filter(contact => contact.id !== action.payload);
         },
     },
 });
@@ -29,7 +31,7 @@ const persistConfig = {
 }
 
 export const contactsReducer = persistReducer(persistConfig, contactsSlice.reducer)
-console.log(contactsSlice.reducer)
+
 
 
 export const { addContact, deleteContact } = contactsSlice.actions;

@@ -8,12 +8,7 @@ import { persistStore, FLUSH,
 import { contactsReducer } from "./contactsSlice";
 import { filterReducer } from "./filterSlice";
 
-// const persistConfig = {
-//   key: 'root',
-//   storage,
-// }
 
-// const persistedContactsReducer = persistReducer(persistConfig, contactsReducer)
 
 export const store = configureStore({
     reducer: {

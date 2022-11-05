@@ -35,9 +35,3 @@ export const Filter = () => {
         </Div>
 )
 }
-
-// Filter.propTypes = {
-//     value: PropTypes.string.isRequired,
-//     id: PropTypes.string.isRequired,
-//     onChange: PropTypes.func.isRequired
-// }

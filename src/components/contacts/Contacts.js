@@ -7,7 +7,6 @@ import { deleteContact } from "redux/contactsSlice";
 
 export const ContactForm = () => {
     const selector = useSelector(getContacts);
-    // console.log(selector.list)
     const dispatch = useDispatch();
     const contact = useSelector(getFilter);
 
@@ -19,7 +18,6 @@ export const ContactForm = () => {
     const visibleContacts = getVisibleFilter()
 
     const delContact = contactId => {
-        
     dispatch(deleteContact(contactId))
   }
     return (

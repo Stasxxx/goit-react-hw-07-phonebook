@@ -1,7 +1,7 @@
 import { Div, Label, Input, Button } from "./form.styled"
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector, } from "react-redux";
-import { addContact } from "redux/contactsSlice";
+import { addContact } from "redux/operations";
 import { getContacts } from "redux/selectors"; 
     
 const nameInputId = nanoid();

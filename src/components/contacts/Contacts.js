@@ -10,7 +10,6 @@ export const ContactForm = () => {
     const selector = useSelector(selectContacts);
     const dispatch = useDispatch();
     const contact = useSelector(selectFilter);
-
     const getVisibleFilter = () => {
         const normalizedFilter = contact.toLowerCase()
         return selector.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));

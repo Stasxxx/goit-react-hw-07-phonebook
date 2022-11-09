@@ -1,15 +1,15 @@
 // import PropTypes from "prop-types";
 import { Item, List } from "./contacts.styled"
 import { CardContact } from "components/CardContact/CardContact";
-import { useSelector} from "react-redux";
-import { getContacts, getFilter } from "redux/selectors";
-// import { deleteContact } from "redux/contactsSlice";
+import { useSelector,useDispatch} from "react-redux";
+import { selectContacts, selectFilter } from "redux/selectors";
+import { deleteContact } from "redux/operations";
 
 
 export const ContactForm = () => {
-    const selector = useSelector(getContacts);
-    // const dispatch = useDispatch();
-    const contact = useSelector(getFilter);
+    const selector = useSelector(selectContacts);
+    const dispatch = useDispatch();
+    const contact = useSelector(selectFilter);
 
     const getVisibleFilter = () => {
         const normalizedFilter = contact.toLowerCase()
@@ -17,7 +17,7 @@ export const ContactForm = () => {
     };
         
     const delContact = contactId => {
-        // dispatch(deleteContact(contactId))
+        dispatch(deleteContact(contactId))
     };
 
     const visibleContacts = getVisibleFilter()

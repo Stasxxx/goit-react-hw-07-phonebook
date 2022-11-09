@@ -2,7 +2,7 @@ import { Div, Label, Input, Button } from "./form.styled"
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector, } from "react-redux";
 import { addContact } from "redux/operations";
-import { getContacts } from "redux/selectors"; 
+import { selectContacts } from "redux/selectors"; 
     
 const nameInputId = nanoid();
 const numberInputId = nanoid();
@@ -11,12 +11,12 @@ const numberInputId = nanoid();
 export const Form = () => {
     
     const dispatch = useDispatch();
-    const selector = useSelector(getContacts);
+    const selector = useSelector(selectContacts);
     
     const handleSubmit = e => {
         e.preventDefault();
         const form = e.target.elements
-        const contact = { id: nanoid(), name: form.name.value, number: form.number.value }
+        const contact = { id: nanoid(), name: form.name.value, phone: form.number.value }
         const name = selector.find(item => item.name === contact.name);
         e.target.reset();
 

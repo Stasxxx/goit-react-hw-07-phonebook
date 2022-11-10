@@ -1,11 +1,19 @@
-import { Container, Button } from "./CardContact.styled"
+import { Container, Button } from "./CardContact.styled";
+import { deleteContact } from "redux/operations";
+import { useDispatch } from "react-redux";
 
 
-export const CardContact = ({contact, delContact}) => {
+export const CardContact = ({ id, name, phone }) => {
+    const dispatch = useDispatch();
+        
+   const delContact = () => {
+       dispatch(deleteContact(id));
+    };
+
     return (
         <Container>
-            <div>{contact.name}: {contact.phone}</div>
-            <Button type="button" onClick={()=> delContact(contact.id)}>Delete</Button>
+            <div>{name}: {phone}</div>
+            <Button type="button" onClick={delContact}>Delete</Button>
         </Container>
     )
 }

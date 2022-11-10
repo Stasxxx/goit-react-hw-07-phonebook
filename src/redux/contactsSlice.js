@@ -34,7 +34,7 @@ const addContactReducer = (state, action) => {
 };
 
 const deleteContactReducer = (state, action) => {
-    const index = state.list.findIndex(contact => contact.id === action.payload);
+    const index = state.list.findIndex(contact => contact.id === action.payload.id);
     state.list.splice(index, 1);
 }
 
